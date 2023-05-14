@@ -1,0 +1,44 @@
+name: Fastapi rate limiter
+
+on:
+  push:
+    branches: [main]
+  
+  pull_request:
+    branches: [main]
+
+jobs:
+  tests:
+
+    runs-on: ubuntu-latest
+
+    services:
+      # Label used to access the service container
+      redis:
+        # Docker Hub image
+        image: redis
+        # Set health checks to wait until redis has started
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python 3.8
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install flake8
+    - name: Lint with flake8
+      run: |
+        flake8 . 
+    - name: Test with pytest
+      run: |
+        pytest
+      env:
+        REDIS_HOST: redis
