@@ -10,13 +10,11 @@ on:
 jobs:
   tests:
     runs-on: ubuntu-latest
-    container: python:bullseye
-
     services:
       # Label used to access the service container
       redis:
         # Docker Hub image
-        image: redis
+        image: redis:alpine
         # Set health checks to wait until redis has started
         options: >-
           --health-cmd "redis-cli ping"
@@ -43,5 +41,5 @@ jobs:
       run: |
         pytest
       env:
-        REDIS_HOST: redis
+        REDIS_HOST: localhost
         REDIS_PORT: 6379
