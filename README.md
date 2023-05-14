@@ -1,3 +1,4 @@
+[![Fastapi rate limiter](https://github.com/iunary/fastapi-redis-rate-limiter/actions/workflows/app.yml/badge.svg)](https://github.com/iunary/fastapi-redis-rate-limiter/actions/workflows/app.yml)
 # Fastapi redis rate limiter middleware
 
 Redis Rate Limiter Middleware is a Python module that provides rate limiting functionality for FastAPI applications using Redis as the storage backend. It allows you to limit the number of requests a client can make within a specified time window.
