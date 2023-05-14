@@ -10,7 +10,7 @@ on:
 jobs:
   tests:
     runs-on: ubuntu-latest
-    container: python:alpine3.18
+    container: python
 
     services:
       # Label used to access the service container
