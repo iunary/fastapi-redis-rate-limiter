@@ -6,7 +6,7 @@ with open("README.md", "r") as readme:
     long_description = readme.read()
 
 setup(
-    name="fastapi_rate_limiter",
+    name="fastapi_redis_rate_limiter",
     version=VERSION,
     description="fastapi rate limiter middleware",
     packages=find_packages(exclude=["tests"]),

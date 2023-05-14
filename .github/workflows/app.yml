@@ -1,4 +1,4 @@
-name: Fastapi rate limiter
+name: Fastapi redis rate limiter
 
 on:
   push:

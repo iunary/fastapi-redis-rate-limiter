@@ -15,7 +15,7 @@ Redis Rate Limiter Middleware is a Python module that provides rate limiting fun
 Install the Redis Rate Limiter Middleware module using `pip`:
 
 ```shell
-pip install fastapi_rate_limiter
+pip install fastapi_redis_rate_limiter
 ```
 
 ## Usage
@@ -24,7 +24,7 @@ Here's an example of how to use the Redis Rate Limiter Middleware in a FastAPI a
 
 ```python
 from fastapi import FastAPI
-from fastapi_rate_limiter import RedisRateLimiterMiddleware, RedisClient
+from fastapi_redis_rate_limiter import RedisRateLimiterMiddleware, RedisClient
 
 app = FastAPI()
 

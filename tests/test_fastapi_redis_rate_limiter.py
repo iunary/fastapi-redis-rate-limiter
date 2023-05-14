@@ -3,7 +3,7 @@ import pytest
 import time
 from fastapi import FastAPI
 from starlette.testclient import TestClient
-from fastapi_rate_limiter import RedisClient, RedisRateLimiterMiddleware
+from fastapi_redis_rate_limiter import RedisClient, RedisRateLimiterMiddleware
 
 # Initialize the FastAPI app for testing
 app = FastAPI()
@@ -27,7 +27,7 @@ def test_client():
         yield client
 
 
-def test_rate_limit_not_exceeded(test_client):
+def test_fastapi_rate_limit_not_exceeded(test_client):
     # Perform requests within the rate limit window
     time.sleep(5)
     for _ in range(3):
@@ -36,7 +36,7 @@ def test_rate_limit_not_exceeded(test_client):
         assert response.json() == {"message": "Hello, world!"}
 
 
-def test_rate_limit_exceeded(test_client):
+def test_fastapi_rate_limit_exceeded(test_client):
     # Perform more than the allowed number of requests within the rate limit window
     for i in range(6):
         response = test_client.get("/")
@@ -45,7 +45,7 @@ def test_rate_limit_exceeded(test_client):
             assert response.text == "Rate limit exceeded. Try again later."
 
 
-def test_rate_limit_reset(test_client):
+def test_fastapi_rate_limit_reset(test_client):
     # Wait for the rate limit window to reset
     time.sleep(10)
 
