@@ -1,4 +1,5 @@
 import redis
+from redis import Redis
 
 
 class RedisError(Exception):
@@ -10,7 +11,7 @@ class RedisClient:
     A Redis client wrapper class for simplified interaction with Redis.
     """
 
-    def __init__(self, host: str = "localhost", port: int = 6379, db: int = 0):
+    def __init__(self, client: Redis = None, host: str = "localhost", port: int = 6379, db: int = 0):
         """
         Initializes the Redis client.
 
@@ -19,7 +20,11 @@ class RedisClient:
             port (int): Redis server port. Defaults to 6379.
             db (int): Redis database index. Defaults to 0.
         """
-        self.client = redis.Redis(host=host, port=port, db=db)
+        if client is not None and isinstance(client, Redis):
+            self.client = client
+        else:
+            self.client = redis.Redis(host=host, port=port, db=db)
+        
 
     def get(self, key: str):
         """
