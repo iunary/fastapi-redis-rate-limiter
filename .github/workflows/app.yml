@@ -9,8 +9,8 @@ on:
 
 jobs:
   tests:
-
     runs-on: ubuntu-latest
+    container: python:alpine3.18
 
     services:
       # Label used to access the service container
@@ -44,3 +44,4 @@ jobs:
         pytest
       env:
         REDIS_HOST: redis
+        REDIS_PORT: 6379
