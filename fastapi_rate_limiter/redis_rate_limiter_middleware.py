@@ -1,10 +1,11 @@
+"""Fastapi redis rate limiter"""
 import time
+from typing import Union, Callable
 from datetime import timedelta
 from starlette.responses import Response
 from starlette.middleware.base import BaseHTTPMiddleware
 from fastapi import Request
 from fastapi.responses import PlainTextResponse
-from typing import Union
 from .redis_client import RedisClient
 
 
@@ -34,7 +35,7 @@ class RedisRateLimiterMiddleware(BaseHTTPMiddleware):
         self.limit = limit
         self.window = window
 
-    async def dispatch(self, request: Request, call_next) -> Response:
+    async def dispatch(self, request: Request, call_next: Callable) -> Response:
         """
         Handles the incoming request and applies rate limiting.
 
