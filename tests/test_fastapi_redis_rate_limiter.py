@@ -1,8 +1,10 @@
 import os
-import pytest
 import time
+
+import pytest
 from fastapi import FastAPI
 from starlette.testclient import TestClient
+
 from fastapi_redis_rate_limiter import RedisClient, RedisRateLimiterMiddleware
 
 # Initialize the FastAPI app for testing

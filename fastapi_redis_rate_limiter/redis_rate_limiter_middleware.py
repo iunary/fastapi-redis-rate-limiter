@@ -1,11 +1,13 @@
 """Fastapi redis rate limiter"""
 import time
-from typing import Union, Callable
 from datetime import timedelta
-from starlette.responses import Response
-from starlette.middleware.base import BaseHTTPMiddleware
+from typing import Callable, Union
+
 from fastapi import Request
 from fastapi.responses import PlainTextResponse
+from starlette.middleware.base import BaseHTTPMiddleware
+from starlette.responses import Response
+
 from .redis_client import RedisClient
 
 
